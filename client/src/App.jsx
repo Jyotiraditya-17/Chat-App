@@ -9,9 +9,17 @@ import ProfilePage from './pages/ProfilePage'
 import { useAuthStore } from './store/useAuthStore'
 import {Loader} from 'lucide-react'
 import { Toaster } from 'react-hot-toast'
+import { useThemeStore } from './store/useThemeStore'
 
 function App() {
   const {authUser , checkAuth , isCheckingAuth} = useAuthStore()
+
+  const {theme} = useThemeStore();
+
+  // set theme dynamically
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     checkAuth()
