@@ -3,6 +3,7 @@ import { useChatStore } from '../store/useChatStore'
 import { useAuthStore } from '../store/useAuthStore'
 import SidebarSkeleton from './skeletons/SidebarSkeleton';
 import { Users } from 'lucide-react';
+import { useState } from 'react';
 
 function Slidebar() {
 
@@ -10,10 +11,14 @@ function Slidebar() {
 
     const {onlineUsers} = useAuthStore();
 
+    const [showOnlineOnly , setShowOnloneOnly] = useState(false)
+
 
     useEffect( () => {
         getUsers()
     } , [getUsers] )
+
+    const filteredUsers = showOnlineOnly ? users.filter(user => onlineUsers.includes(user._id)) : users ;
 
     if(isUsersLoading) return <SidebarSkeleton />
 
@@ -28,11 +33,24 @@ function Slidebar() {
 
             {/* TODO : Online Filter Toggle */}
 
+            <div className='mt-3 hidden lg:flex items-center gap-2'>
+                <label className='cursor-pointer flex items-center gap-2'>
+                    <input
+                        type='checkbox' 
+                        className='checkbox checkbox-sm'
+                        checked={showOnlineOnly}
+                        onChange={ (e) => setShowOnloneOnly(e.target.checked)}
+                    />
+                    <span className='text-sm'> Show online Only </span>
+                </label>
+                <span className='text-xs text-zinc-500'> ({onlineUsers.length - 1} online ) </span>
+            </div>
+
         </div>
 
         <div className='overflow-y-auto w-full py-3'>
             {
-                users.map( (user) => (
+                filteredUsers.map( (user) => (
                     <button
                         key={user._id}
                         className={`w-full p-3 flex items-center gap-3 hover:bg-base-200 transition-all duration-200 ${selectedUser?._id === user._id ? 'bg-base-200' : ''}`}
@@ -58,6 +76,16 @@ function Slidebar() {
                     </button>
                 ))
             }
+
+
+            {
+                filteredUsers.length === 0 && (
+                    <div className='text-center text-zinc-500 py-4'>
+                        No users found
+                    </div>
+                )
+            }
+            
         </div>
     </aside>
   )
