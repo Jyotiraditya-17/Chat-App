@@ -17,7 +17,7 @@ function ChatContainer() {
 
     subscribeToMessages();
 
-    return () => unsubscribeFromMessages();
+    return () => unsubscribeFromMessages;
 
   } , [selectedUser._id , getMessages , subscribeToMessages, unsubscribeFromMessages]);
 
