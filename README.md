@@ -11,7 +11,7 @@ Highlights:
 - 🚀 Online user status
 - 👌 Global state management with Zustand
 - 🐞 Error handling both on the server and on the client
-- ⭐ Deployment on Render 
+- ⭐ Deployed on [Render](https://render.com)
 - ⏳ And much more!
 
 ### Setup .env file
@@ -38,4 +38,83 @@ npm run build
 
 ```shell
 npm run dev
+```
+
+### Folder Structure
+
+```
+└── 📁Chat App
+    └── 📁client
+        └── 📁public
+            ├── avatar.png
+            ├── ChatHome.png
+            ├── logo.svg
+            ├── vite.svg
+        └── 📁src
+            └── 📁assets
+                ├── react.svg
+            └── 📁components
+                └── 📁skeletons
+                    ├── MessageSkeleton.jsx
+                    ├── SidebarSkeleton.jsx
+                ├── AuthImagePattern.jsx
+                ├── ChatContainer.jsx
+                ├── ChatHeader.jsx
+                ├── MessageInput.jsx
+                ├── Navbar.jsx
+                ├── NoChatSelected.jsx
+                ├── Slidebar.jsx
+            └── 📁constants
+                ├── index.js
+            └── 📁lib
+                ├── axios.js
+                ├── utils.js
+            └── 📁pages
+                ├── HomePage.jsx
+                ├── LoginPage.jsx
+                ├── ProfilePage.jsx
+                ├── SettingsPage.jsx
+                ├── SignupPage.jsx
+            └── 📁store
+                ├── useAuthStore.js
+                ├── useChatStore.js
+                ├── useThemeStore.js
+            ├── App.css
+            ├── App.jsx
+            ├── index.css
+            ├── main.jsx
+        ├── .gitignore
+        ├── eslint.config.js
+        ├── index.html
+        ├── package-lock.json
+        ├── package.json
+        ├── README.md
+        ├── vite.config.js
+    └── 📁server
+        └── 📁src
+            └── 📁controllers
+                ├── auth.controller.js
+                ├── message.controller.js
+            └── 📁lib
+                ├── cloudinary.js
+                ├── db.js
+                ├── socket.js
+                ├── utils.js
+            └── 📁middleware
+                ├── auth.middleware.js
+            └── 📁models
+                ├── message.model.js
+                ├── user.model.js
+            └── 📁routes
+                ├── auth.route.js
+                ├── message.route.js
+            └── 📁seeds
+                ├── user.seed.js
+            ├── server.js
+        ├── .env
+        ├── package-lock.json
+        ├── package.json
+    ├── .gitignore
+    ├── package.json
+    └── README.md
 ```
